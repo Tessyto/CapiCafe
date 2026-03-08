@@ -699,12 +699,12 @@ body {
 .tutorial-overlay.hidden { display: none; }
 .tutorial-overlay.active { pointer-events: all; }
 
-/* Dark overlay — NO backdrop-filter, lo hace el canvas */
+/* Dark overlay */
 .tutorial-overlay::before {
     content: '';
     position: fixed;
     inset: 0;
-    background: transparent; /* el canvas se encarga del oscurecimiento */
+    background: transparent; 
     z-index: 0;
 }
 
@@ -716,7 +716,7 @@ body {
     pointer-events: none;
 }
 
-/* Spotlight — ahora solo el borde brillante, sin box-shadow oscuro */
+/* Spotlight */
 .tutorial-spotlight {
     position: fixed;
     border-radius: 12px;
@@ -914,4 +914,5 @@ body {
 @keyframes highlightPulse {
     0%, 100% { outline-color: rgba(176,125,84,0.8); box-shadow: 0 0 0 3px rgba(176,125,84,0.25); }
     50% { outline-color: rgba(176,125,84,0.4); box-shadow: 0 0 0 6px rgba(176,125,84,0.12); }
+
 }
