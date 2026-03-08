@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const imgUrl = datosPrevios?.imagen_url || '';
         const imgB64 = datosPrevios?.imagen_b64 || '';
-        const startInUrl = !imgB64; // si hay b64 guardado, mostramos uploader
+        const startInUrl = !imgB64; 
 
         formDiv.innerHTML = `
             <div class="item-form-header">
@@ -220,7 +220,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function getItemImagen(item) {
-        // Prefiere b64 (subida local), sino URL
         return item.imagen_b64 || item.imagen_url || '';
     }
 
@@ -273,7 +272,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const subtitulo = document.getElementById('input-menu-subtitle').value;
         const template = document.querySelector('input[name="template"]:checked')?.value || 'clasico';
         const datos = recolectarDatos();
-        // No guardamos b64 en localStorage (puede ser muy grande), solo url
         const datosSinB64 = datos.map(sec => ({
             ...sec,
             items: sec.items.map(i => ({ ...i, imagen_b64: '' }))
@@ -559,4 +557,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     cargarDatosGuardados();
+
 });
