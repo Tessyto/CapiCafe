@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CapiCafe - Editor de Menú</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+
+        <!-- PANEL EDITOR -->
+        <section class="editor-panel">
+            <header class="editor-header">
+                <div class="header-top">
+                    <h1>CapiCafe ☕</h1>
+                    <div class="header-btns">
+                        <button id="btn-tutorial" class="btn-icon btn-tutorial-trigger" title="Tutorial interactivo">!</button>
+                        <button id="btn-settings" class="btn-icon" title="Configuración del menú">⚙</button>
+                    </div>
+                </div>
+                <p>Configurador de Menú</p>
+            </header>
+
+            <!-- Panel de configuración -->
+            <div id="settings-panel" class="settings-panel hidden">
+                <div class="settings-group">
+                    <label>Título del menú</label>
+                    <input type="text" id="input-menu-title" value="Nuestro Menú" placeholder="Ej. Carta de CapiCafe" oninput="actualizarTitulo()">
+                </div>
+                <div class="settings-group">
+                    <label>Subtítulo / eslogan</label>
+                    <input type="text" id="input-menu-subtitle" value="" placeholder="Ej. Hecho con amor desde 2024" oninput="actualizarTitulo()">
+                </div>
+                <div class="settings-group">
+                    <label>Plantilla PDF</label>
+                    <div class="template-options">
+                        <label class="template-opt active" data-template="clasico">
+                            <input type="radio" name="template" value="clasico" checked>
+                            <span class="template-preview clasico-prev"></span>
+                            <span>Clásico</span>
+                        </label>
+                        <label class="template-opt" data-template="moderno">
+                            <input type="radio" name="template" value="moderno">
+                            <span class="template-preview moderno-prev"></span>
+                            <span>Moderno</span>
+                        </label>
+                        <label class="template-opt" data-template="minimalista">
+                            <input type="radio" name="template" value="minimalista">
+                            <span class="template-preview minimalista-prev"></span>
+                            <span>Minimal</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="items-container" class="items-container"></div>
+
+            <div class="editor-actions">
+                <button id="btn-add-section" class="btn primary-btn">+ Sección</button>
+                <button id="btn-export-pdf" class="btn pdf-btn">⬇ PDF</button>
+                <button id="btn-save-menu" class="btn secondary-btn">Guardar</button>
+            </div>
+        </section>
+
+        <!-- PANEL PREVIEW -->
+        <section class="preview-panel">
+            <div class="menu-canvas" id="menu-canvas">
+                <div class="menu-header">
+                    <h2 class="menu-title" id="preview-title">Nuestro Menú</h2>
+                    <p class="menu-subtitle" id="preview-subtitle"></p>
+                    <div class="menu-divider"></div>
+                </div>
+                <div id="menu-preview-list" class="menu-list">
+                    <div class="empty-state">Agrega secciones y productos para previsualizar el menú.</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ========== TUTORIAL OVERLAY ========== -->
+    <div id="tutorial-overlay" class="tutorial-overlay hidden">
+        <canvas id="tutorial-canvas"></canvas>
+        <div class="tutorial-spotlight" id="tutorial-spotlight"></div>
+        <div class="tutorial-card" id="tutorial-card">
+            <div class="tutorial-card-inner">
+                <div class="tutorial-step-badge" id="tutorial-badge">01</div>
+                <div class="tutorial-emoji" id="tutorial-emoji">☕</div>
+                <h3 class="tutorial-title" id="tutorial-title">Bienvenido a CapiCafe</h3>
+                <p class="tutorial-desc" id="tutorial-desc">Tu editor de menús artesanales. En 6 pasos rápidos aprenderás todo lo que necesitas.</p>
+                <div class="tutorial-progress">
+                    <div class="tutorial-progress-bar" id="tutorial-progress-bar"></div>
+                </div>
+                <div class="tutorial-actions">
+                    <button class="tutorial-btn-skip" id="tutorial-skip">Saltar tutorial</button>
+                    <button class="tutorial-btn-next" id="tutorial-next">Empezar →</button>
+                </div>
+            </div>
+        </div>
+        <div class="tutorial-arrow" id="tutorial-arrow"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='tutorial.js') }}"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
